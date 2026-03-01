@@ -15,7 +15,7 @@ Built with Next.js 16 + Tailwind CSS v4 + Framer Motion — with i18n and dark m
 
 [**Live Demo**](https://jihoon-gong.vercel.app) &nbsp;|&nbsp; [**Deploy Your Own**](#-deploy)
 
-<!-- TODO: Add animated GIF showing language switch + dark mode + scroll animations -->
+<img src=".github/demo.gif" alt="Awesome Portfolio Template Demo - Dark mode, language switch, scroll animations" width="720" />
 
 </div>
 
