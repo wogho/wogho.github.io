@@ -27,12 +27,6 @@ Next.js 16 · Tailwind CSS v4 · TypeScript · Framer Motion
 
 <br>
 
-<div align="center">
-<strong>9개 섹션</strong> &nbsp;&middot;&nbsp; <strong>2개 언어</strong> &nbsp;&middot;&nbsp; <strong>1개 설정 파일</strong> &nbsp;&middot;&nbsp; <strong>0줄 컴포넌트 수정</strong>
-</div>
-
-<br>
-
 ---
 
 ## 왜 이 템플릿인가?
