@@ -1,3 +1,5 @@
+> [한국어](README.md)
+
 <div align="center">
 
 # Awesome Portfolio Template
@@ -11,9 +13,11 @@ Built with Next.js 16 + Tailwind CSS v4 + Framer Motion — with i18n and dark m
 [![Tailwind CSS](https://img.shields.io/badge/Tailwind_CSS-v4-38bdf8?logo=tailwindcss)](https://tailwindcss.com/)
 [![License: MIT](https://img.shields.io/badge/License-MIT-green.svg)](LICENSE)
 
-[한국어](README.md) | [English](README.en.md)
+<br>
 
-[**Live Demo**](https://jihoon-gong.vercel.app) &nbsp;|&nbsp; [**Deploy Your Own**](#deploy)
+[**Live Demo**](https://jihoon-gong.vercel.app) &nbsp;&nbsp;|&nbsp;&nbsp; [**Deploy Your Own**](#deploy)
+
+<br>
 
 <img src=".github/demo.gif" alt="Awesome Portfolio Template Demo - Dark mode, language switch, scroll animations" width="720" />
 
@@ -21,17 +25,32 @@ Built with Next.js 16 + Tailwind CSS v4 + Framer Motion — with i18n and dark m
 
 ---
 
+## Why This Template?
+
+There are hundreds of portfolio templates on GitHub. But almost none of them combine **Next.js + i18n + dark mode + a career detail page** in a single, polished package.
+
+What makes this one different:
+
+- **It has a career detail page.** Not just a timeline. A dedicated `/career` page where you can walk through each project's background, your role, the results, and what you learned. Senior engineers need this. Most templates don't have it.
+- **i18n is built in from the start.** Not bolted on afterward. Full URL routing (`/ko`, `/en`) via `next-intl`, with Korean and English ready to go.
+- **One config file to rule them all.** Edit `src/config/site.ts` and seven data files. You never need to touch component code.
+- **The design quality is different.** Framer Motion animations, gradient orbs, smooth scroll indicators. The kind of polish that takes weeks to build from scratch.
+
+---
+
 ## Features
 
-- **Internationalization (i18n)** — Built-in Korean/English support via `next-intl`. Add any language easily.
-- **Dark / Light Mode** — System-preference-aware with smooth transitions via `next-themes`.
-- **Framer Motion Animations** — Polished entrance animations, floating orbs, smooth scroll indicators.
-- **Career Detail Pages** — Not just a flat list. Dedicated `/career` page with rich project narratives.
-- **SEO Optimized** — JSON-LD structured data, Open Graph images, sitemap, robots.txt.
-- **Fully Responsive** — Mobile-first with hamburger menu, optimized for all screen sizes.
-- **One Config File** — Edit `src/config/site.ts` + data files. No need to touch component code.
-- **Accessibility** — ARIA labels, keyboard navigation, focus management.
-- **Performance** — LazyMotion, CSS keyframe animations, optimized fonts via `next/font`.
+- **Internationalization (i18n)** — Built-in Korean/English support via `next-intl`. Full URL routing (`/ko`, `/en`) keeps locales cleanly separated. Add any language with minimal effort.
+- **Dark / Light Mode** — System-preference-aware via `next-themes`, with a manual toggle and zero flash on load.
+- **Framer Motion Animations** — Polished entrance animations, floating orbs, smooth scroll indicators. Bundle size stays lean with `LazyMotion`.
+- **Career Detail Pages** — A dedicated `/career` page for rich project narratives: background, role, results, lessons learned. Essential for senior-level job applications.
+- **SEO Optimized** — JSON-LD structured data, Open Graph images, sitemap, and robots.txt all included.
+- **Fully Responsive** — Mobile-first with a hamburger menu and touch-friendly interactions. Looks sharp on every screen size.
+- **One Config File** — Edit `src/config/site.ts` and the data files. No need to touch component code.
+- **Accessibility** — ARIA labels, keyboard navigation, and focus management throughout.
+- **Performance** — LazyMotion, CSS keyframe animations, and `next/font` optimization for fast load times.
+
+---
 
 ## Sections
 
@@ -46,28 +65,6 @@ Built with Next.js 16 + Tailwind CSS v4 + Framer Motion — with i18n and dark m
 | **Certified** | Certifications grouped by category + awards |
 | **Projects** | Expandable project cards with tech tags |
 | **Contact** | Social links (LinkedIn, GitHub, Blog, Email) |
-
-## Tech Stack
-
-| Technology | Purpose |
-|---|---|
-| [Next.js 16](https://nextjs.org/) | React framework with App Router |
-| [TypeScript](https://www.typescriptlang.org/) | Type safety |
-| [Tailwind CSS v4](https://tailwindcss.com/) | Utility-first styling with CSS-variable theming |
-| [next-intl](https://next-intl-docs.vercel.app/) | Internationalization |
-| [next-themes](https://github.com/pacocoursey/next-themes) | Dark/Light mode |
-| [Framer Motion](https://www.framer.com/motion/) | Animations |
-| [Lucide Icons](https://lucide.dev/) | Icons |
-
----
-
-## For LLM Agents
-
-Fetch the installation guide and follow it:
-
-```
-curl -s https://raw.githubusercontent.com/zer0-kr/awesome-portfolio-template/main/docs/guide/installation.md
-```
 
 ---
 
@@ -183,6 +180,16 @@ sections: {
 
 ---
 
+## For LLM Agents
+
+Fetch the installation guide and follow it:
+
+```bash
+curl -s https://raw.githubusercontent.com/zer0-kr/awesome-portfolio-template/main/docs/guide/installation.md
+```
+
+---
+
 ## Project Structure
 
 ```
@@ -211,6 +218,20 @@ src/
         ├── page.tsx          # Home page
         └── career/page.tsx   # Career detail page
 ```
+
+---
+
+## Tech Stack
+
+| Technology | Purpose |
+|---|---|
+| [Next.js 16](https://nextjs.org/) | React framework with App Router |
+| [TypeScript](https://www.typescriptlang.org/) | Type safety |
+| [Tailwind CSS v4](https://tailwindcss.com/) | Utility-first styling with CSS-variable theming |
+| [next-intl](https://next-intl-docs.vercel.app/) | Internationalization |
+| [next-themes](https://github.com/pacocoursey/next-themes) | Dark/Light mode |
+| [Framer Motion](https://www.framer.com/motion/) | Animations |
+| [Lucide Icons](https://lucide.dev/) | Icons |
 
 ---
 
