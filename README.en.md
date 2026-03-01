@@ -27,17 +27,9 @@ Next.js 16 · Tailwind CSS v4 · TypeScript · Framer Motion
 
 <br>
 
-<div align="center">
-<strong>9 Sections</strong> &nbsp;&middot;&nbsp; <strong>2 Languages</strong> &nbsp;&middot;&nbsp; <strong>1 Config File</strong> &nbsp;&middot;&nbsp; <strong>0 Component Edits</strong>
-</div>
-
-<br>
-
 ---
 
 ## Why This Template?
-
-There are hundreds of portfolio templates on GitHub, but almost none combine **Next.js + i18n + dark mode + a career detail page** in a single, polished package.
 
 - **Career detail page** — Not just a timeline. A dedicated `/career` page where you walk through each project's background, role, results, and lessons. Senior engineers need this. Most templates don't have it.
 - **i18n built in from the start** — Not bolted on afterward. Full URL routing (`/ko`, `/en`) via `next-intl` with Korean and English ready to go.
