@@ -1,5 +1,3 @@
-<p align="right"><a href="README.md">한국어</a></p>
-
 <div align="center">
 
 # Awesome Portfolio Template
@@ -12,6 +10,8 @@ Built with Next.js 16 + Tailwind CSS v4 + Framer Motion — with i18n and dark m
 [![TypeScript](https://img.shields.io/badge/TypeScript-5.x-blue?logo=typescript)](https://www.typescriptlang.org/)
 [![Tailwind CSS](https://img.shields.io/badge/Tailwind_CSS-v4-38bdf8?logo=tailwindcss)](https://tailwindcss.com/)
 [![License: MIT](https://img.shields.io/badge/License-MIT-green.svg)](LICENSE)
+
+[한국어](README.md) | [English](README.en.md)
 
 [**Live Demo**](https://jihoon-gong.vercel.app) &nbsp;|&nbsp; [**Deploy Your Own**](#-deploy)
 
