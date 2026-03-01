@@ -13,7 +13,7 @@
 
 <br>
 
-[**라이브 데모**](https://jihoon-gong.vercel.app) &nbsp;&nbsp;&middot;&nbsp;&nbsp; [**바로 배포하기**](#배포)
+[**라이브 데모 보러가기**](https://jihoon-gong.vercel.app)
 
 <br>
 

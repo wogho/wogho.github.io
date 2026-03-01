@@ -13,7 +13,7 @@
 
 <br>
 
-[**Live Demo**](https://jihoon-gong.vercel.app) &nbsp;&nbsp;&middot;&nbsp;&nbsp; [**Deploy Your Own**](#deploy)
+[**View Live Demo**](https://jihoon-gong.vercel.app)
 
 <br>
 
