@@ -1,0 +1,85 @@
+{
+  "nav": {
+    "about": "About",
+    "experience": "Experience",
+    "certified": "Certified",
+    "speaking": "Speaking",
+    "projects": "Projects",
+    "contact": "Contact",
+    "career-highlights": "Portfolio"
+  },
+  "hero": {
+    "greeting": "Hello",
+    "name": "John Doe",
+    "title": "Security Compliance Engineer",
+    "subtitle": "Building pragmatic information security frameworks in Cloud Native environments",
+    "cta_resume": "View Portfolio",
+    "cta_contact": "Get in Touch"
+  },
+  "about": {
+    "heading": "About",
+    "description_1": "Experienced information security professional across specialized firms, government agencies, financial institutions, e-commerce, and startups. Committed to building pragmatic security frameworks that consider service, operations, and development holistically.",
+    "description_2": "Continuously researching AWS and Kubernetes security, aiming to become a leading Security Compliance Engineer.",
+    "description_3": "As the sole security officer at a Series B startup with 300 employees operating an e-commerce platform in a Cloud Native environment, I prepared and achieved ISMS/27001/27701 initial audits from scratch without consulting — with particular strengths in building information security management systems tailored for AWS and Kubernetes.",
+    "keywords": ["ISMS", "ISO 27001", "Compliance", "Policy Automation", "AWS Security", "Kubernetes"]
+  },
+  "experience": {
+    "heading": "Experience"
+  },
+  "certified": {
+    "heading": "Certified",
+    "certifications": "Certifications",
+    "awards": "Awards"
+  },
+  "speaking": {
+    "heading": "Speaking & Community",
+    "talks": "Talks & Lectures",
+    "community": "Community"
+  },
+  "projects": {
+    "heading": "Projects"
+  },
+  "contact": {
+    "heading": "Contact",
+    "description": "Feel free to reach out for collaboration, speaking, or opportunities.",
+    "email": "Email",
+    "blog": "Blog",
+    "github": "GitHub",
+    "linkedin": "LinkedIn"
+  },
+  "footer": {
+    "copyright": "© 2026 John Doe. All rights reserved.",
+    "built_with": "Built with Next.js & Tailwind CSS"
+  },
+  "common": {
+    "present": "Present",
+    "goal": "Goal",
+    "content": "Content",
+    "result": "Result",
+    "view_more": "View Guideline",
+    "view_slides": "Slides",
+    "view_video": "Watch Video",
+    "featured": "Featured",
+    "active": "Active"
+  },
+  "career_highlights": {
+    "heading": "Portfolio",
+    "overview_label": "Overview",
+    "achievements_label": "Key Achievements",
+    "competencies_label": "Core Competencies",
+    "cta_title": "See the Full Story",
+    "cta_description": "Explore the background, role, results and lessons behind each project.",
+    "cta_button": "View Details",
+    "self_developed_tools_label": "Self-Developed Tools"
+  },
+  "career_story": {
+    "title": "Portfolio",
+    "subtitle": "Detailed background, role, results and lessons behind each achievement.",
+    "back": "Go Back",
+    "background": "Background",
+    "role": "Role",
+    "results": "Results & Impact",
+    "lessons": "Lessons Learned",
+    "toc": "Table of Contents"
+  }
+}
