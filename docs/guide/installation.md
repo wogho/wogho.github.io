@@ -1,25 +1,26 @@
 # Awesome Portfolio Template — Installation & Customization Guide
 
-> **For AI Agents**: This document contains all the information needed to clone, configure, and deploy this portfolio template. Follow each step sequentially. All file paths are relative to the project root.
+> **For AI Agents**: This document contains all the information needed to clone, configure, and deploy this portfolio template **without human intervention** (except for collecting user information). Follow each step sequentially. All file paths are relative to the project root.
 
 ---
 
 ## Table of Contents
 
 1. [Prerequisites](#prerequisites)
-2. [Clone & Run](#clone--run)
-3. [Project Structure](#project-structure)
-4. [Customization: Site Config](#customization-site-config)
-5. [Customization: Data Files](#customization-data-files)
-6. [Customization: UI Strings (i18n)](#customization-ui-strings-i18n)
-7. [Customization: Profile Photo](#customization-profile-photo)
-8. [Customization: Environment Variables](#customization-environment-variables)
-9. [Build & Verify](#build--verify)
-10. [Deploy](#deploy)
-11. [Post-Deployment](#post-deployment)
-12. [Advanced: Adding a Language](#advanced-adding-a-language)
-13. [Advanced: Hiding Sections](#advanced-hiding-sections)
-14. [Tech Stack Reference](#tech-stack-reference)
+2. [Gather User Information](#gather-user-information)
+3. [Clone & Run](#clone--run)
+4. [Project Structure](#project-structure)
+5. [Customization: Site Config](#customization-site-config)
+6. [Customization: Data Files](#customization-data-files)
+7. [Customization: UI Strings (i18n)](#customization-ui-strings-i18n)
+8. [Customization: Profile Photo & Branding](#customization-profile-photo--branding)
+9. [Customization: Environment Variables](#customization-environment-variables)
+10. [Build & Verify](#build--verify)
+11. [Deploy](#deploy)
+12. [Post-Deployment](#post-deployment)
+13. [Advanced: Adding a Language](#advanced-adding-a-language)
+14. [Advanced: Hiding Sections](#advanced-hiding-sections)
+15. [Tech Stack Reference](#tech-stack-reference)
 
 ---
 
@@ -28,7 +29,40 @@
 - **Node.js** 18+ and **npm**
 - **Git**
 - A **GitHub** account
-- (Optional) A **Vercel** or **Netlify** account for deployment
+- (For deployment) One of:
+  - **Vercel** account + access token ([create here](https://vercel.com/account/tokens))
+  - **Netlify** account + personal access token ([create here](https://app.netlify.com/user/applications#personal-access-tokens))
+
+---
+
+## Gather User Information
+
+**Before customizing, collect the following information from the user.** All fields support Korean and English (bilingual).
+
+### Required Information
+
+| Category | What to Ask |
+|----------|------------|
+| **Basic Info** | Full name (Korean + English), job title, email |
+| **Social Links** | GitHub URL, LinkedIn URL, blog URL |
+| **Profile Photo** | A square image file (400×400px+), PNG or WebP |
+| **About / Bio** | 2-3 paragraphs of self-introduction (Korean + English) |
+| **Skill Keywords** | 4-6 keyword tags for the About section |
+
+### Optional Information (per section)
+
+| Section | What to Ask |
+|---------|------------|
+| **Experience** | Work history: company, team, role, period, key achievements, tech tags |
+| **Career Summary** | Overview paragraph, key achievements grouped by category, core competencies |
+| **Career Detail** | For each major project: background, role breakdown, results, lessons learned |
+| **Certifications** | Name, issuer, date, category (`"security"` / `"kubernetes"` / `"general"`) |
+| **Awards** | Title, issuer, date |
+| **Speaking** | Talk title, date, venue, links to slides/video |
+| **Community** | Organization, role, period, active status |
+| **Projects** | Title, period, goals, contents, results, tech tags, URL |
+
+> **Agent tip**: If the user doesn't have content for a section, set it to `false` in `siteConfig.sections` to hide it entirely. See [Hiding Sections](#advanced-hiding-sections).
 
 ---
 
@@ -76,14 +110,20 @@ src/
 ├── messages/                 # UI strings (i18n)
 │   ├── ko.json               # Korean
 │   └── en.json               # English
+├── app/
+│   └── [locale]/
+│       ├── opengraph-image.tsx   # Auto-generated OG image (uses siteConfig)
+│       └── career/
+│           └── opengraph-image.tsx  # Auto-generated career page OG image
 ├── components/               # React components (no edits needed for basic setup)
-├── app/                      # Next.js App Router pages
 ├── i18n/                     # Internationalization config
 └── middleware.ts             # Locale detection
 public/
 ├── profile.png               # Your profile photo
-├── favicon.svg               # Site favicon
-└── site.webmanifest          # PWA manifest
+├── favicon.svg               # Site favicon (SVG)
+├── favicon.ico               # Site favicon (ICO fallback)
+├── apple-touch-icon.png      # Apple device icon
+└── site.webmanifest          # PWA manifest (contains site name)
 ```
 
 ---
@@ -148,20 +188,41 @@ export const siteConfig = {
 export type NavKey = (typeof siteConfig.nav)[number];
 ```
 
+### Section ↔ Nav Key Mapping
+
+> **Important**: The `sections` object and `nav` array use **different key formats**. When toggling sections, update both consistently.
+
+| `siteConfig.sections` key | `siteConfig.nav` value | Section Name |
+|--------------------------|----------------------|-------------|
+| `hero` | *(not in nav)* | Hero banner |
+| `about` | `"about"` | About / Bio |
+| `experience` | `"experience"` | Work History |
+| `careerHighlights` | `"career-highlights"` | Portfolio / Career Highlights |
+| `speaking` | `"speaking"` | Talks & Community |
+| `certified` | `"certified"` | Certifications & Awards |
+| `projects` | `"projects"` | Side Projects |
+| `contact` | `"contact"` | Contact Info |
+
+**Example** — to hide the Speaking section:
+1. Set `sections.speaking` to `false`
+2. Remove `"speaking"` from the `nav` array
+
 ---
 
 ## Customization: Data Files
 
-All data files are in `src/data/`. Each file exports typed data with Korean (`ko`) and English (`en`) variants for internationalization.
+All data files are in `src/data/`. Each file exports typed data with Korean and English variants for internationalization.
+
+> **Bilingual pattern**: Some files use `{ ko: string, en: string }` objects, others use `field` + `fieldEn` paired properties. Follow the exact pattern shown for each file.
 
 ### `profile.ts` — Bio & Education
 
-No TypeScript interface — exports a plain object.
+No TypeScript interface — exports a plain object directly.
 
 ```typescript
 export const profile = {
   name: {
-    ko: "홍길동",
+    ko: "홍길동",          // Uses { ko, en } object pattern
     en: "John Doe",
   },
   title: {
@@ -178,7 +239,7 @@ export const profile = {
   education: [
     {
       school: "서울대학교",
-      schoolEn: "Seoul National University",
+      schoolEn: "Seoul National University",   // Uses field + fieldEn pattern
       major: "컴퓨터공학과",
       majorEn: "Computer Science",
       degree: "학사",
@@ -276,7 +337,7 @@ export const coreCompetencies: { ko: string; en: string }[] = [
 
 ### `career-detail.ts` — Detailed Project Narratives
 
-This powers the `/career` detail page.
+This powers the `/career` detail page. Each entry becomes a section with anchor navigation.
 
 ```typescript
 export interface CareerDetailItem {
@@ -295,7 +356,7 @@ export interface SubSection {
 }
 
 export interface CareerDetailSection {
-  id: string;            // Unique section ID (used for URL anchors)
+  id: string;            // Unique section ID (used for URL anchors, e.g. /career#cloud-security)
   title: string;         // Section title (Korean)
   titleEn: string;       // Section title (English)
   background: CareerDetailItem[];  // Why this project existed
@@ -350,8 +411,8 @@ export interface Certification {
   issuer: string;      // Issuing organization (Korean)
   issuerEn: string;    // Issuing organization (English)
   url?: string;        // Verification URL (optional)
-  highlight?: boolean; // true = featured with badge
-  category: "security" | "kubernetes" | "general"; // Category for grouping
+  highlight?: boolean; // true = featured with badge icon
+  category: "security" | "kubernetes" | "general"; // Category for grouping/filtering
 }
 
 export interface Award {
@@ -360,7 +421,7 @@ export interface Award {
   issuer: string;      // Issuing organization (Korean)
   issuerEn: string;    // Issuing organization (English)
   date: string;        // Date received
-  highlight?: boolean; // true = featured with badge
+  highlight?: boolean; // true = featured with badge icon
 }
 
 export const certifications: Certification[] = [
@@ -397,8 +458,8 @@ export interface Talk {
   venue: string;       // Event/venue name (Korean)
   venueEn: string;     // Event/venue name (English)
   slidesUrl?: string;  // Link to slides (optional)
-  videoUrl?: string;    // Link to video recording (optional)
-  highlight?: boolean; // true = featured with badge
+  videoUrl?: string;   // Link to video recording (optional)
+  highlight?: boolean; // true = featured with badge icon
 }
 
 export interface Community {
@@ -408,7 +469,7 @@ export interface Community {
   organizationEn: string;// Organization name (English)
   period: string;        // Activity period (Korean)
   periodEn: string;      // Activity period (English)
-  active: boolean;       // true = currently active
+  active: boolean;       // true = shows "Active" badge
 }
 
 export const talks: Talk[] = [
@@ -477,7 +538,7 @@ export const projects: Project[] = [
 
 **Files**: `src/messages/ko.json` and `src/messages/en.json`
 
-These files contain all UI text (section headings, button labels, etc.). Both files share the same key structure. Update **both files** when customizing.
+These files contain all UI text (section headings, button labels, etc.). Both files share the **exact same key structure**. Update **both files** when customizing.
 
 ### Full Key Structure
 
@@ -571,25 +632,25 @@ These files contain all UI text (section headings, button labels, etc.). Both fi
 
 ### Fields You MUST Update
 
-| Key | What It Is |
-|-----|-----------|
-| `hero.greeting` | Greeting text on the hero section |
-| `hero.name` | Your display name |
-| `hero.title` | Your professional title |
-| `hero.subtitle` | One-line professional summary |
-| `about.description_1` | First intro paragraph |
-| `about.description_2` | Second intro paragraph |
-| `about.description_3` | Detailed self-introduction |
-| `about.keywords` | Skill/keyword tags shown in About section |
-| `contact.description` | Contact section description |
-| `footer.copyright` | Copyright notice with your name |
+| Key | What It Is | Example (Korean) |
+|-----|-----------|-----------------|
+| `hero.greeting` | Greeting text | "안녕하세요" |
+| `hero.name` | Display name | "홍길동" |
+| `hero.title` | Professional title | "Software Engineer" |
+| `hero.subtitle` | One-line summary | "합리적인 보안 체계를 구축합니다" |
+| `about.description_1` | First intro paragraph | *(user's bio)* |
+| `about.description_2` | Second intro paragraph | *(user's bio)* |
+| `about.description_3` | Detailed introduction | *(user's bio)* |
+| `about.keywords` | Skill tags (array) | `["AWS", "Kubernetes"]` |
+| `contact.description` | Contact CTA text | "편하게 연락 주세요" |
+| `footer.copyright` | Copyright with name | "© 2026 홍길동. All rights reserved." |
 
 ### Fields You MAY Update
 
 | Key | What It Is |
 |-----|-----------|
-| `hero.cta_resume` | CTA button text (left) |
-| `hero.cta_contact` | CTA button text (right) |
+| `hero.cta_resume` | Left CTA button text |
+| `hero.cta_contact` | Right CTA button text |
 | `nav.*` | Navigation labels |
 | `career_highlights.*` | Portfolio section labels |
 | `career_story.*` | Career detail page labels |
@@ -599,29 +660,84 @@ These files contain all UI text (section headings, button labels, etc.). Both fi
 
 ---
 
-## Customization: Profile Photo
+## Customization: Profile Photo & Branding
 
-Replace `public/profile.png` with your own photo.
+### Profile Photo
+
+Replace `public/profile.png` with the user's photo.
 
 - **Format**: PNG or WebP
 - **Size**: Square, at least 400×400px recommended
-- **Used in**: About section + Open Graph (social sharing) images
+- **Keep the filename as `profile.png`** — it's referenced by components and OG image generation
+
+### Favicon
+
+Replace these files in `public/`:
+
+| File | Format | Purpose |
+|------|--------|---------|
+| `favicon.svg` | SVG | Modern browsers |
+| `favicon.ico` | ICO | Legacy browsers |
+| `apple-touch-icon.png` | 180×180 PNG | Apple devices |
+
+> **Tip**: Use a favicon generator like [realfavicongenerator.net](https://realfavicongenerator.net/) to create all formats from a single image.
+
+### Web App Manifest
+
+**File**: `public/site.webmanifest`
+
+Update the `name` and `short_name` fields:
+
+```json
+{
+  "name": "Your Name Portfolio",
+  "short_name": "Portfolio",
+  "icons": [
+    {
+      "src": "/favicon.svg",
+      "type": "image/svg+xml",
+      "sizes": "any"
+    }
+  ],
+  "theme_color": "#0f172a",
+  "background_color": "#ffffff",
+  "display": "standalone"
+}
+```
+
+### Open Graph Images (Auto-Generated)
+
+**You do NOT need to create OG images manually.** The template automatically generates them using:
+
+- `src/app/[locale]/opengraph-image.tsx` — Uses `siteConfig.author.name`, `siteConfig.author.title`, and `siteConfig.seo.keywords`
+- `src/app/[locale]/career/opengraph-image.tsx` — Uses `siteConfig.author.name`
+
+Once you update `siteConfig`, OG images update automatically on next build.
 
 ---
 
 ## Customization: Environment Variables
 
+**File**: `.env.example` (copy to `.env.local`)
+
 ```bash
 cp .env.example .env.local
 ```
 
-Edit `.env.local`:
+### `.env.example` contents:
+
+```env
+# Site URL (used for SEO, sitemap, OG images)
+NEXT_PUBLIC_BASE_URL=https://your-portfolio.vercel.app
+```
+
+Edit `.env.local` and set your production URL:
 
 ```env
 NEXT_PUBLIC_BASE_URL=https://your-name.vercel.app
 ```
 
-> This value is used for SEO metadata, Open Graph images, and sitemap generation. Set it to your production URL after deployment.
+> This value is used for SEO metadata, Open Graph images, sitemap generation, and `robots.txt`. Set it to your production URL after deployment. During development, `http://localhost:3000` is used automatically via the fallback in `site.ts`.
 
 ---
 
@@ -649,6 +765,7 @@ Open http://localhost:3000 and confirm:
 - [ ] Navigation links scroll to the correct sections
 - [ ] Profile photo appears in the About section
 - [ ] `/career` page loads and shows your detailed project narratives
+- [ ] Hidden sections (if any) are not visible
 
 ---
 
@@ -656,22 +773,28 @@ Open http://localhost:3000 and confirm:
 
 ### Option A: Vercel CLI (Recommended)
 
+All commands below are **non-interactive** and suitable for automated/agent execution.
+
 ```bash
-# Install Vercel CLI (if not installed)
+# Install Vercel CLI
 npm i -g vercel
 
-# Deploy — follow the interactive prompts
-vercel
+# Link to a Vercel project (creates new if needed)
+# Replace $VERCEL_TOKEN with your Vercel access token
+vercel link --yes --token=$VERCEL_TOKEN
 
-# Set the production URL environment variable
-vercel env add NEXT_PUBLIC_BASE_URL
-# Enter: https://your-project.vercel.app (or your custom domain)
+# Set environment variable
+echo "https://your-project.vercel.app" | vercel env add NEXT_PUBLIC_BASE_URL production --token=$VERCEL_TOKEN
 
 # Deploy to production
-vercel --prod
+vercel --prod --yes --token=$VERCEL_TOKEN
 ```
 
-### Option B: Vercel Dashboard
+> **Getting a Vercel token**: Go to https://vercel.com/account/tokens → Create → Copy the token.
+
+> **After first deploy**: The production URL will be shown in the output (e.g. `https://my-portfolio-xxxxx.vercel.app`). Use this URL for `NEXT_PUBLIC_BASE_URL`. If using a custom domain, configure it at https://vercel.com/docs/projects/domains.
+
+### Option B: Vercel Dashboard (Manual)
 
 1. Push your code to GitHub
 2. Go to https://vercel.com/new
@@ -685,20 +808,24 @@ Or use the one-click deploy button:
 
 ### Option C: Netlify CLI
 
-```bash
-# Install Netlify CLI (if not installed)
-npm i -g netlify-cli
+All commands below are **non-interactive**.
 
-# Login to Netlify
-netlify login
+```bash
+# Install Netlify CLI
+npm i -g netlify-cli
 
 # Build first
 npm run build
 
-# Create a new site and deploy
-netlify init
-netlify deploy --prod
+# Create and deploy a new site (non-interactive)
+# Replace $NETLIFY_AUTH_TOKEN with your Netlify personal access token
+netlify deploy --prod --auth=$NETLIFY_AUTH_TOKEN --dir=.next
+
+# Set environment variable
+netlify env:set NEXT_PUBLIC_BASE_URL "https://your-site.netlify.app" --auth=$NETLIFY_AUTH_TOKEN
 ```
+
+> **Getting a Netlify token**: Go to https://app.netlify.com/user/applications#personal-access-tokens → New access token.
 
 ### Option D: Self-Hosted
 
@@ -706,7 +833,7 @@ netlify deploy --prod
 npm run build
 npm run start
 # The app runs on port 3000 by default
-# Use a reverse proxy (nginx, caddy) for production
+# Use a reverse proxy (nginx, caddy) for HTTPS in production
 ```
 
 ---
@@ -715,30 +842,32 @@ npm run start
 
 After your site is live:
 
-1. **Update the production URL** in `src/config/site.ts`:
+### 1. Update Production URL
+
+Update `NEXT_PUBLIC_BASE_URL` in your hosting provider's environment variables to your actual production URL, then redeploy.
+
+### 2. (Optional) Google Search Console
+
+1. Verify your site in [Google Search Console](https://search.google.com/search-console)
+2. Copy the verification meta tag content value
+3. Add it to `siteConfig.googleVerification` in `src/config/site.ts`:
    ```typescript
-   url: "https://your-actual-domain.com",
+   googleVerification: "your-verification-code-here",
    ```
-
-2. **Update `NEXT_PUBLIC_BASE_URL`** in your hosting provider's environment variables to match.
-
-3. **Rebuild and redeploy** to apply the URL change.
-
-4. **(Optional) Google Search Console**:
-   - Verify your site in [Google Search Console](https://search.google.com/search-console)
-   - Copy the verification code and add it to `siteConfig.googleVerification`
-   - Submit your sitemap: `https://your-domain.com/sitemap.xml`
+4. Redeploy
+5. Submit your sitemap: `https://your-domain.com/sitemap.xml`
 
 ---
 
 ## Advanced: Adding a Language
 
-To add a language beyond Korean and English (e.g., Japanese):
+To add a language beyond Korean and English (e.g., Japanese `ja`):
 
 1. Create `src/messages/ja.json` — copy from `en.json` and translate all values
 2. Edit `src/i18n/routing.ts` — add `"ja"` to the `locales` array
 3. Edit `src/middleware.ts` — add `"ja"` to the locale matcher pattern
 4. Add the new locale variant to all text fields in `src/data/*.ts` files (e.g., add `titleJa`, `textJa` fields)
+5. Update components to read the new locale fields
 
 ---
 
@@ -753,6 +882,8 @@ To hide a section you don't need:
    }
    ```
 2. Remove its entry from `siteConfig.nav` to also remove it from the navigation bar.
+
+> Refer to the [Section ↔ Nav Key Mapping](#section--nav-key-mapping) table for the correct key names.
 
 No need to delete component files — they simply won't render.
 
