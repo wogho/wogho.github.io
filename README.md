@@ -1,4 +1,4 @@
-> **[English README](README.en.md)**
+<p align="right"><a href="README.en.md">English</a></p>
 
 <div align="center">
 

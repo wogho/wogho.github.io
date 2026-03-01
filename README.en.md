@@ -1,4 +1,4 @@
-> **[한국어 README](README.md)**
+<p align="right"><a href="README.md">한국어</a></p>
 
 <div align="center">
 
