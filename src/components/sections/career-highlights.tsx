@@ -35,7 +35,7 @@ export function CareerHighlights() {
           <h3 className="mb-3 text-sm font-semibold uppercase tracking-wider text-accent">
             {t("overview_label")}
           </h3>
-          <p className="text-sm leading-relaxed text-muted-foreground md:text-base">
+          <p className="whitespace-pre-line text-sm leading-relaxed text-muted-foreground md:text-base">
             {isKo ? careerOverview.ko : careerOverview.en}
           </p>
         </m.div>

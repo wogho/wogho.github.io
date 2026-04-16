@@ -2,12 +2,11 @@ import type { Metadata } from "next";
 import { Header } from "@/components/layout/header";
 import { Hero } from "@/components/sections/hero";
 import { About } from "@/components/sections/about";
+import { Education } from "@/components/sections/education";
 import { Experience } from "@/components/sections/experience";
 import { Footer } from "@/components/layout/footer";
 import { CareerHighlights } from "@/components/sections/career-highlights";
 import { Credentials } from "@/components/sections/credentials";
-import { Speaking } from "@/components/sections/speaking";
-import { Projects } from "@/components/sections/projects";
 import { Contact } from "@/components/sections/contact";
 import { JsonLd } from "@/components/seo/json-ld";
 import { ScrollToTop } from "@/components/ui/scroll-to-top";
@@ -60,11 +59,10 @@ export default function Home() {
       <main>
         <Hero />
         <About />
+        <Education />
         <Experience />
         <CareerHighlights />
-        <Speaking />
         <Credentials />
-        <Projects />
         <Contact />
       </main>
       <Footer />

@@ -53,8 +53,7 @@ export default async function LocaleLayout({
       <body className="bg-background text-foreground antialiased font-sans">
         <ThemeProvider
           attribute="class"
-          defaultTheme="light"
-          enableSystem
+          defaultTheme="dark"
           disableTransitionOnChange
         >
           <NextIntlClientProvider messages={messages}>

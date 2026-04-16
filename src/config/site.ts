@@ -1,22 +1,21 @@
 export const siteConfig = {
   url: process.env.NEXT_PUBLIC_BASE_URL || "https://your-portfolio.vercel.app",
   author: {
-    name: { ko: "홍길동", en: "John Doe" },
-    title: { ko: "시니어 소프트웨어 엔지니어", en: "Senior Software Engineer" },
-    email: "hello@example.com",
+    name: { ko: "김재호", en: "Jaeho Kim" },
+    title: { ko: "Security Infrastructure Engineer", en: "Security Infrastructure Engineer" },
+    email: "dnldp55@naver.com",
   },
   social: {
-    github: "https://github.com/username",
-    linkedin: "https://linkedin.com/in/username",
-    blog: "https://blog.example.com",
+    github: "https://github.com/wogho",
+    linkedin: "https://www.linkedin.com/in/jaeho-kim-2b70b1232/",
+    blog: "https://noong2.tistory.com/",
   },
   nav: [
     "about",
+    "education",
     "experience",
     "career-highlights",
-    "speaking",
     "certified",
-    "projects",
     "contact",
   ] as const,
   sections: {
@@ -24,17 +23,17 @@ export const siteConfig = {
     about: true,
     experience: true,
     careerHighlights: true,
-    speaking: true,
+    speaking: false,
     certified: true,
-    projects: true,
+    projects: false,
     contact: true,
   },
   seo: {
-    titleTemplate: "%s | John Doe",
-    defaultTitle: "John Doe | Senior Software Engineer",
+    titleTemplate: "%s | Jaeho Kim",
+    defaultTitle: "Jaeho Kim | Security Infrastructure Engineer",
     description:
-      "Personal portfolio showcasing my professional experience, projects, and achievements.",
-    keywords: ["portfolio", "software engineer", "developer"],
+      "안정적인 보안 인프라 환경 구축에 관심을 갖고 있는 학생입니다.",
+    keywords: ["portfolio", "security", "infrastructure", "engineer"],
   },
   googleVerification: "",
 };

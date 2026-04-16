@@ -50,7 +50,7 @@ export function Contact() {
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true, margin: "-80px" }}
           transition={{ duration: 0.45, delay: 0.1 }}
-          className="mb-10 text-muted-foreground"
+          className="mb-10 whitespace-pre-line text-muted-foreground"
         >
           {t("description")}
         </m.p>

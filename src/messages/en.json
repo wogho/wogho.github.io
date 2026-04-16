@@ -1,39 +1,40 @@
 {
   "nav": {
     "about": "About",
+    "education": "Education",
     "experience": "Experience",
     "certified": "Certified",
-    "speaking": "Speaking",
     "projects": "Projects",
     "contact": "Contact",
     "career-highlights": "Portfolio"
   },
   "hero": {
     "greeting": "Hello",
-    "name": "John Doe",
-    "title": "Security Compliance Engineer",
-    "subtitle": "Building pragmatic information security frameworks in Cloud Native environments",
+    "name": "Jaeho Kim",
+    "title": "Security Infrastructure Engineer",
+    "subtitle": "An engineer growing toward building stable and secure infrastructure environments.",
     "cta_resume": "View Portfolio",
     "cta_contact": "Get in Touch"
   },
   "about": {
     "heading": "About",
-    "description_1": "Experienced information security professional across specialized firms, government agencies, financial institutions, e-commerce, and startups. Committed to building pragmatic security frameworks that consider service, operations, and development holistically.",
-    "description_2": "Continuously researching AWS and Kubernetes security, aiming to become a leading Security Compliance Engineer.",
-    "description_3": "As the sole security officer at a Series B startup with 300 employees operating an e-commerce platform in a Cloud Native environment, I prepared and achieved ISMS/27001/27701 initial audits from scratch without consulting — with particular strengths in building information security management systems tailored for AWS and Kubernetes.",
-    "keywords": ["ISMS", "ISO 27001", "Compliance", "Policy Automation", "AWS Security", "Kubernetes"]
+    "description_1": "Building on a foundation in OS (NOS) and Cisco networking developed since high school, I gained broad hands-on experience at an infrastructure team — from On-Prem server management to multi-cloud operations.",
+    "description_2": "I am now growing toward becoming a security engineer who understands enterprise security across service, operations, and development — steadily expanding my knowledge through consistent learning.",
+    "description_3": "My goal is to build security environments that are stable and trusted.",
+    "keywords": ["Multi-cloud (AWS, NCP, GCP)", "Cisco", "Linux", "EDR/NGAV", "FortiGate"]
   },
   "experience": {
     "heading": "Experience"
   },
+  "education": {
+    "heading": "Education",
+    "present": "Present",
+    "training": "Training"
+  },
   "certified": {
     "heading": "Certified",
     "certifications": "Certifications",
-    "awards": "Awards"
-  },
-  "speaking": {
-    "heading": "Speaking & Community",
-    "talks": "Talks & Lectures",
+    "awards": "Awards",
     "community": "Community"
   },
   "projects": {
@@ -41,14 +42,14 @@
   },
   "contact": {
     "heading": "Contact",
-    "description": "Feel free to reach out for collaboration, speaking, or opportunities.",
+    "description": "I am interested in information security activities, education, and undergraduate internship opportunities.\nFeel free to reach out anytime.",
     "email": "Email",
     "blog": "Blog",
     "github": "GitHub",
     "linkedin": "LinkedIn"
   },
   "footer": {
-    "copyright": "© 2026 John Doe. All rights reserved.",
+    "copyright": "© 2026 Jaeho Kim. All rights reserved.",
     "built_with": "Built with Awesome Portfolio Template"
   },
   "common": {

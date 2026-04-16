@@ -1,4 +1,4 @@
-export interface SubSection {
+﻿export interface SubSection {
   title: string;
   titleEn: string;
   items: CareerDetailItem[];
@@ -22,285 +22,205 @@ export interface CareerDetailSection {
 
 export const careerDetailSections: CareerDetailSection[] = [
   {
-    id: "microservices",
-    title: "마이크로서비스 아키텍처 전환",
-    titleEn: "Microservices Architecture Migration",
+    id: "nas-sync",
+    title: "본사/지사 NAS 동기화 통합",
+    titleEn: "HQ/Branch NAS Synchronization Integration",
     background: [
       {
-        text: "테크코프의 핵심 서비스는 모놀리식 아키텍처로 구축되어 있었으며, 사용자 수가 급증하면서 확장성과 배포 속도에 심각한 병목이 발생했습니다.",
-        textEn:
-          "TechCorp's core service was built on a monolithic architecture, and rapid user growth created severe bottlenecks in scalability and deployment speed.",
+        text: "중국 GFW 환경으로 인해 한국 본사-베이징 지사 간 1.5GB 파일 전송 시 200분 이상 소요되거나 실패하는 문제가 발생했습니다.",
+        textEn: "Due to China's GFW, large file (1.5 GB) transfers between the Korean HQ and Beijing branch took 200+ minutes or frequently failed.",
       },
       {
-        text: "단일 코드베이스에서 40명 이상의 엔지니어가 동시에 작업하면서 코드 충돌과 배포 지연이 빈번하게 발생했고, 주간 배포가 2주에 1회로 지연되는 상황이었습니다.",
-        textEn:
-          "With 40+ engineers working on a single codebase simultaneously, code conflicts and deployment delays were frequent, with weekly deployments slipping to biweekly.",
-      },
-      {
-        text: "비즈니스 성장을 지원하기 위해 서비스 분리와 독립적 배포가 가능한 마이크로서비스 아키텍처로의 전환을 최우선 과제로 설정했습니다.",
-        textEn:
-          "To support business growth, migrating to a microservices architecture enabling service isolation and independent deployments was set as the top priority.",
+        text: "파일 버전 충돌과 디자인·기획 자료 공유 지연으로 업무 흐름이 반복적으로 중단되었습니다.",
+        textEn: "File version conflicts and delayed asset sharing repeatedly disrupted the design and planning workflow.",
       },
     ],
     role: [
       {
-        title: "아키텍처 설계",
-        titleEn: "Architecture Design",
+        title: "회선 성능 테스트 및 아키텍처 설계",
+        titleEn: "Line Performance Testing & Architecture Design",
         items: [
           {
-            text: "도메인 분석을 통해 서비스 경계를 정의하고, 12개 마이크로서비스로 분리하는 로드맵을 수립했습니다.",
-            textEn:
-              "Defined service boundaries through domain analysis and established a roadmap for decomposition into 12 microservices.",
-            subItems: [
-              {
-                text: "DDD(Domain-Driven Design) 원칙을 적용하여 Bounded Context를 식별하고, 각 서비스의 책임 범위를 명확히 정의했습니다.",
-                textEn:
-                  "Applied DDD principles to identify Bounded Contexts and clearly defined each service's responsibility scope.",
-              },
-              {
-                text: "서비스 간 데이터 일관성을 보장하기 위해 Saga 패턴과 이벤트 소싱 전략을 설계했습니다.",
-                textEn:
-                  "Designed Saga patterns and event sourcing strategies to ensure data consistency across services.",
-              },
-            ],
+            text: "구간별(한국↔상하이, 상하이↔베이징) 업로드 테스트를 진행하여 전용선·공용 회선 성능 데이터를 수집했습니다.",
+            textEn: "Performed per-segment upload tests (Korea↔Shanghai, Shanghai↔Beijing) to collect dedicated and public line performance data.",
           },
           {
-            text: "이벤트 드리븐 아키텍처를 기반으로 서비스 간 비동기 통신 체계를 구축했습니다.",
-            textEn:
-              "Built an asynchronous inter-service communication framework based on event-driven architecture.",
-            subItems: [
-              {
-                text: "Apache Kafka를 메시지 브로커로 도입하고, 이벤트 스키마 레지스트리를 구축하여 서비스 간 계약을 관리했습니다.",
-                textEn:
-                  "Introduced Apache Kafka as the message broker and built an event schema registry to manage inter-service contracts.",
-              },
-              {
-                text: "Dead Letter Queue와 재시도 메커니즘을 구현하여 메시지 처리 신뢰성을 99.9%로 향상시켰습니다.",
-                textEn:
-                  "Implemented Dead Letter Queue and retry mechanisms, improving message processing reliability to 99.9%.",
-              },
-            ],
+            text: "테스트 결과를 근거로 전용선(QoS 5 Mbps) + 공용 회선(30 Mbps) 이중 경로 아키텍처를 도출했습니다.",
+            textEn: "Derived a dual-path architecture — dedicated line (QoS 5 Mbps) + public line (30 Mbps) — based on measured test results.",
           },
         ],
       },
       {
-        title: "점진적 마이그레이션",
-        titleEn: "Incremental Migration",
+        title: "네트워크 이중화 및 NAS 동기화 구성",
+        titleEn: "Dual-Path Network Setup & NAS Sync Configuration",
         items: [
           {
-            text: "Strangler Fig 패턴을 적용하여 무중단으로 점진적 마이그레이션을 수행했습니다.",
-            textEn:
-              "Applied the Strangler Fig pattern to perform zero-downtime incremental migration.",
-            subItems: [
-              {
-                text: "API Gateway를 통한 트래픽 라우팅으로 신구 시스템 간 점진적 전환을 구현했습니다.",
-                textEn:
-                  "Implemented gradual transition between old and new systems via API Gateway traffic routing.",
-              },
-              {
-                text: "각 서비스별 카나리 배포 전략을 수립하여 리스크를 최소화했습니다.",
-                textEn:
-                  "Established canary deployment strategies per service to minimize risk.",
-              },
-            ],
+            text: "전용선 구간 NAT 1:1 매핑과 방화벽 Whitelist 정책을 설정했습니다.",
+            textEn: "Configured NAT 1:1 mapping for the dedicated-line segment and applied firewall whitelist policies.",
+          },
+          {
+            text: "파일 충돌 방지를 위해 단방향 동기화(한국→상하이)를 구성하고, Synology ShareSync 부서별 접근 제어와 NAS 백업 설정을 단독 수행했습니다.",
+            textEn: "Configured one-way sync (Korea→Shanghai) to prevent conflicts; solely handled Synology ShareSync per-department access control and NAS backup setup.",
+          },
+        ],
+      },
+      {
+        title: "모니터링 연동",
+        titleEn: "Monitoring Integration",
+        items: [
+          {
+            text: "기존 Nagios 모니터링에 동기화 구간 트래픽 지표를 추가하여 병목 선행 감지 체계를 구축했습니다.",
+            textEn: "Added sync-segment traffic metrics to the existing Nagios monitoring to enable proactive bottleneck detection.",
           },
         ],
       },
     ],
     results: [
       {
-        text: "6개월에 걸친 점진적 마이그레이션을 통해 서비스 다운타임 없이 12개 마이크로서비스로 성공적으로 전환했습니다.",
-        textEn:
-          "Successfully migrated to 12 microservices over 6 months with zero service downtime through incremental migration.",
+        text: "1.5 GB 파일 전송 시간을 200분 이상에서 40분 이내로 단축하여 전송 효율 500% 이상 향상.",
+        textEn: "Reduced 1.5 GB file transfer time from 200+ minutes to under 40 minutes — over 500% improvement.",
       },
       {
-        text: "배포 주기가 2주 1회에서 일 3회 이상으로 개선되었고, 개별 서비스의 독립적 배포가 가능해져 팀 생산성이 크게 향상되었습니다.",
-        textEn:
-          "Deployment frequency improved from biweekly to 3+ times daily, with independent service deployments significantly boosting team productivity.",
+        text: "전송 성공률 100% 달성 및 파일 버전 충돌 문제 해소.",
+        textEn: "Achieved 100% transfer success rate and eliminated file version conflicts.",
       },
       {
-        text: "시스템 확장성이 개선되어 트래픽 급증 시에도 자동 스케일링으로 안정적인 서비스 운영이 가능해졌습니다.",
-        textEn:
-          "Improved system scalability enabled stable service operation through auto-scaling even during traffic spikes.",
+        text: "이중 경로 설계와 QoS 우선순위 지정으로 전용선 단독 도입 대비 비용 절감.",
+        textEn: "Reduced costs through dual-path design and QoS prioritization compared to a full dedicated-line deployment.",
       },
     ],
     lessons: [
       {
-        text: "마이크로서비스 전환에서 가장 큰 도전은 기술적 복잡성이 아닌 팀 간 소통과 합의 도출이었습니다. 서비스 경계를 정의하는 과정에서 각 팀의 도메인 지식을 존중하면서도 전체 시스템의 일관성을 유지하는 균형점을 찾는 것이 핵심이었습니다.",
-        textEn:
-          "The biggest challenge in microservices migration was not technical complexity but inter-team communication and consensus building. The key was finding a balance between respecting each team's domain knowledge and maintaining overall system consistency when defining service boundaries.",
-      },
-      {
-        text: "점진적 마이그레이션 전략의 중요성을 체감했습니다. Big Bang 방식 대신 Strangler Fig 패턴을 선택함으로써 리스크를 관리하면서도 비즈니스 연속성을 보장할 수 있었고, 각 단계에서 얻은 학습을 다음 단계에 반영할 수 있었습니다.",
-        textEn:
-          "Experienced the importance of incremental migration strategy firsthand. Choosing the Strangler Fig pattern over a Big Bang approach allowed us to manage risk while ensuring business continuity, and apply learnings from each phase to the next.",
+        text: "이론적 회선 속도가 아닌 실측 데이터를 기반으로 아키텍처를 결정함으로써 비용과 성능을 동시에 최적화할 수 있었습니다.",
+        textEn: "Basing architectural decisions on measured per-segment data — not theoretical line speeds — enabled simultaneous optimization of both cost and performance.",
       },
     ],
   },
   {
-    id: "performance",
-    title: "대규모 트래픽 성능 최적화",
-    titleEn: "Large-Scale Traffic Performance Optimization",
+    id: "vpn-policy",
+    title: "부서별 VPN 정책 개편 및 통합 접근 관리",
+    titleEn: "VPN Policy Overhaul & Integrated Access Management",
     background: [
       {
-        text: "서비스 사용자가 월 100만 명을 넘어서면서 피크 시간대 응답 지연과 간헐적 서비스 장애가 발생하기 시작했습니다.",
-        textEn:
-          "As monthly users exceeded 1 million, response delays during peak hours and intermittent service outages began occurring.",
+        text: "재택근무 확대로 보안 강화가 필요해졌고, 클라우드(SSL-VPN)와 IDC(Gabia) VPN을 별도로 접속해야 하는 운영 비효율이 발생했습니다.",
+        textEn: "Remote work expansion required stronger security, while connecting to two separate VPNs — Cloud (SSL-VPN) and IDC (Gabia) — was reducing operational efficiency.",
       },
       {
-        text: "데이터베이스 쿼리 지연, 비효율적인 캐싱, 정적 자산 최적화 부족 등 여러 병목 지점이 복합적으로 작용하고 있었습니다.",
-        textEn:
-          "Multiple bottlenecks including database query delays, inefficient caching, and lack of static asset optimization were compounding.",
+        text: "사용자별 정책 관리로 인해 온보딩·오프보딩 처리 지연이 심했고, 분산된 접속 로그로 모니터링 및 감사 대응이 어려웠습니다.",
+        textEn: "Per-user policy management caused significant onboarding/offboarding delays, and fragmented access logs made monitoring and audit responses difficult.",
       },
     ],
     role: [
       {
-        title: "병목 분석 및 최적화",
-        titleEn: "Bottleneck Analysis & Optimization",
+        title: "접근 경로 통합",
+        titleEn: "Access Path Unification",
         items: [
           {
-            text: "APM 도구를 도입하여 전체 요청 경로의 성능을 가시화하고 병목 지점을 정밀 분석했습니다.",
-            textEn:
-              "Introduced APM tools to visualize performance across the entire request path and precisely analyze bottlenecks.",
-            subItems: [
-              {
-                text: "Datadog APM을 도입해 서비스별 레이턴시, 에러율, 처리량을 실시간으로 모니터링하는 대시보드를 구축했습니다.",
-                textEn:
-                  "Deployed Datadog APM and built dashboards for real-time monitoring of per-service latency, error rates, and throughput.",
-              },
-              {
-                text: "슬로우 쿼리 분석을 통해 상위 10개 쿼리를 최적화하여 평균 응답 시간을 40% 단축했습니다.",
-                textEn:
-                  "Optimized the top 10 slow queries through analysis, reducing average response time by 40%.",
-              },
-            ],
+            text: "FortiGate 80E(클라우드)와 1000D(IDC) 간 Site-to-Site 터널 구성, 포트별 정책 규칙 작성, 그룹별 IP 대역 할당 등 장비 설정을 수행했습니다.",
+            textEn: "Performed device configuration including FortiGate Site-to-Site tunneling between 80E (Cloud) and 1000D (IDC), per-port policy rules, and group-based IP range assignment.",
           },
+        ],
+      },
+      {
+        title: "외부 접속자용 OpenVPN 구축",
+        titleEn: "OpenVPN Setup for External Users",
+        items: [
           {
-            text: "다층 캐싱 전략을 설계하고 구현하여 데이터베이스 부하를 크게 줄였습니다.",
-            textEn:
-              "Designed and implemented a multi-layer caching strategy, significantly reducing database load.",
-            subItems: [
-              {
-                text: "Redis를 활용한 애플리케이션 레벨 캐싱과 CDN을 활용한 엣지 캐싱을 조합하여 초당 10,000 요청을 안정적으로 처리할 수 있는 환경을 구축했습니다.",
-                textEn:
-                  "Combined Redis application-level caching with CDN edge caching to reliably handle 10,000 requests per second.",
-              },
-            ],
+            text: "외부 접속자에게 내부 SSL-VPN을 공유하는 위험을 판단하여 별도 OpenVPN 서버를 구축하고, EasyRSA 인증서 발급과 Google OTP 2FA를 연동했습니다.",
+            textEn: "Assessed the risk of sharing SSL-VPN with external users and built a dedicated OpenVPN server with EasyRSA certificate issuance and Google OTP 2FA.",
+          },
+        ],
+      },
+      {
+        title: "그룹 기반 정책 체계 재설계",
+        titleEn: "Group-Based Policy Redesign",
+        items: [
+          {
+            text: "사용자별 정책을 그룹 기반으로 전환하고, VPN 접근 표준 신청 양식을 작성했습니다. 고위험군 계정에 대한 주간 접속 로그 점검을 수행했습니다.",
+            textEn: "Transitioned per-user policies to group-based policies, drafted the standard VPN access request form, and performed weekly access log reviews for high-risk accounts.",
           },
         ],
       },
     ],
     results: [
       {
-        text: "평균 API 응답 시간을 800ms에서 200ms로 75% 개선하고, P99 레이턴시를 3초에서 800ms로 단축했습니다.",
-        textEn:
-          "Improved average API response time by 75% from 800ms to 200ms, and reduced P99 latency from 3s to 800ms.",
+        text: "온보딩·오프보딩 접근 관리 시간이 기존 대비 약 70% 단축되었습니다.",
+        textEn: "Onboarding/offboarding access management time was reduced by approximately 70%.",
       },
       {
-        text: "데이터베이스 부하를 60% 감소시키고, 월간 인프라 비용을 30% 절감하는 성과를 달성했습니다.",
-        textEn:
-          "Achieved 60% reduction in database load and 30% reduction in monthly infrastructure costs.",
+        text: "분산된 접속 로그가 방화벽 단일 지점으로 통합되어 실시간 모니터링 및 감사 대응이 용이해졌습니다.",
+        textEn: "Fragmented access logs were consolidated to a single firewall, making real-time monitoring and audit responses significantly easier.",
       },
     ],
     lessons: [
       {
-        text: "성능 최적화는 측정 없이는 불가능하다는 것을 깊이 체감했습니다. 직감이 아닌 데이터에 기반한 의사결정이 효과적인 최적화의 핵심이며, APM 도구의 도입이 조직 전체의 성능 인식을 변화시키는 계기가 되었습니다.",
-        textEn:
-          "Deeply experienced that performance optimization is impossible without measurement. Data-driven rather than intuition-based decisions are key to effective optimization, and APM tool adoption transformed the entire organization's performance awareness.",
-      },
-      {
-        text: "캐싱은 만능이 아니며, 캐시 무효화 전략이 캐싱 자체보다 더 중요하다는 것을 배웠습니다. 데이터 일관성과 성능 사이의 트레이드오프를 비즈니스 요구사항에 맞게 설계하는 능력을 키울 수 있었습니다.",
-        textEn:
-          "Learned that caching is not a silver bullet and that cache invalidation strategy is more important than caching itself. Developed the ability to design tradeoffs between data consistency and performance according to business requirements.",
+        text: "초기부터 그룹 구조를 설계하는 것이 운영 효율과 보안 모두에 핵심임을 실감했습니다.",
+        textEn: "Experienced firsthand that designing group structures from the start is key to both operational efficiency and security at scale.",
       },
     ],
   },
   {
-    id: "leadership",
-    title: "개발 문화 및 팀 리더십",
-    titleEn: "Engineering Culture & Team Leadership",
+    id: "edr-ngav",
+    title: "EDR/NGAV 도입 및 운영 안정화",
+    titleEn: "EDR/NGAV Deployment & Operational Stabilization",
     background: [
       {
-        text: "팀 규모가 5명에서 15명으로 성장하면서 코드 품질 유지, 지식 공유, 온보딩 효율성에 대한 체계적인 접근이 필요해졌습니다.",
-        textEn:
-          "As the team grew from 5 to 15 members, a systematic approach to maintaining code quality, knowledge sharing, and onboarding efficiency became necessary.",
-      },
-      {
-        text: "기존에는 비공식적인 소통에 의존하던 개발 프로세스를 팀 규모에 맞게 체계화하고 확장 가능한 구조로 전환하는 것이 필요했습니다.",
-        textEn:
-          "The development process, previously relying on informal communication, needed to be systematized and transformed into a scalable structure appropriate for the team size.",
+        text: "시그니처 기반 AV로 탐지되지 않는 Fileless 공격, 랜섬웨어 변종 등 고도화된 위협에 대응하기 위해 행위 기반 탐지 솔루션 도입이 필요했습니다.",
+        textEn: "Advanced threats undetectable by signature-based AV — including Fileless attacks and ransomware variants — necessitated deployment of a behavior-based detection solution.",
       },
     ],
     role: [
       {
-        title: "코드 리뷰 및 품질 관리",
-        titleEn: "Code Review & Quality Management",
+        title: "솔루션 선정 및 도입 전략",
+        titleEn: "Solution Selection & Deployment Strategy",
         items: [
           {
-            text: "체계적인 코드 리뷰 프로세스를 도입하고 팀 내 품질 문화를 정착시켰습니다.",
-            textEn:
-              "Introduced a systematic code review process and established a quality culture within the team.",
+            text: "KISA CERT 기반 보안 체크리스트 초안 작성과 솔루션 비교 매트릭스를 작성하고, EDR 솔루션 선정 및 도입 순서 협의에 참여했습니다.",
+            textEn: "Drafted a KISA CERT-based security checklist and solution comparison matrix, and participated in team coordination for EDR solution selection and deployment sequencing.",
+          },
+        ],
+      },
+      {
+        title: "오탐 대응 프로세스 구축",
+        titleEn: "False Positive Response Process",
+        items: [
+          {
+            text: "초기 배포 시 개발 소스 파일이 랜섬웨어로 오탐·격리되는 문제가 발생했습니다. 개발팀과 협업하여 MD5 해시 검증 기반 오탐 식별 절차를 수립했습니다.",
+            textEn: "Development source files were falsely quarantined as ransomware during initial rollout. Collaborated with the dev team to build an MD5 hash verification procedure for false positive identification.",
             subItems: [
               {
-                text: "리뷰 가이드라인과 체크리스트를 작성하여 일관된 코드 리뷰 기준을 마련하고, PR 템플릿을 표준화했습니다.",
-                textEn:
-                  "Created review guidelines and checklists for consistent code review standards, and standardized PR templates.",
-              },
-              {
-                text: "자동화된 린팅, 테스트, 보안 스캔을 CI 파이프라인에 통합하여 리뷰어의 부담을 줄이고 리뷰 품질을 높였습니다.",
-                textEn:
-                  "Integrated automated linting, testing, and security scans into the CI pipeline, reducing reviewer burden and improving review quality.",
+                text: "정상 파일 Whitelist 등록 후 개발팀과 Prevent 모드 전환 검증을 완료하여 운영 안정화를 달성했습니다.",
+                textEn: "Completed stabilization by validating the Prevent mode transition with the dev team after registering legitimate files to the whitelist.",
               },
             ],
           },
         ],
       },
       {
-        title: "멘토링 및 온보딩",
-        titleEn: "Mentoring & Onboarding",
+        title: "일일 보안 모니터링 운영",
+        titleEn: "Daily Security Monitoring Operations",
         items: [
           {
-            text: "주니어 개발자 온보딩 프로그램을 설계하고 1:1 멘토링 체계를 구축했습니다.",
-            textEn:
-              "Designed a junior developer onboarding program and built a 1:1 mentoring system.",
-            subItems: [
-              {
-                text: "4주간의 구조화된 온보딩 커리큘럼을 설계하여 신규 입사자의 첫 PR 기간을 평균 3주에서 1주로 단축했습니다.",
-                textEn:
-                  "Designed a structured 4-week onboarding curriculum, reducing new hire's first PR time from an average of 3 weeks to 1 week.",
-              },
-              {
-                text: "주간 1:1 미팅과 분기별 성장 목표 설정을 통해 팀원의 기술적 성장을 지원하고 경력 개발을 도왔습니다.",
-                textEn:
-                  "Supported team members' technical growth and career development through weekly 1:1 meetings and quarterly growth goal setting.",
-              },
-            ],
+            text: "이벤트 트리아지·리포트 작성·직원 문의 대응 등 일일 모니터링 업무를 단독 수행하고, 주간 Full Scan 스케줄링 및 보안 교육 자료를 배포했습니다.",
+            textEn: "Solely responsible for daily monitoring operations (event triage, report writing, employee inquiry), plus weekly Full Scan scheduling and security training material distribution.",
           },
         ],
       },
     ],
     results: [
       {
-        text: "코드 리뷰 프로세스 도입 후 프로덕션 버그 발생률이 45% 감소하고, 팀 내 지식 공유가 활성화되었습니다.",
-        textEn:
-          "After introducing the code review process, production bug rate decreased by 45% and knowledge sharing within the team was activated.",
+        text: "Fileless 공격, 랜섬웨어 변종 등 기존 AV로 탐지 불가한 위협을 선제 차단하여 보안 사고 0건을 유지했습니다.",
+        textEn: "Proactively blocked threats undetectable by legacy AV — including Fileless attacks and novel ransomware — maintaining zero security incidents.",
       },
       {
-        text: "온보딩 프로그램을 통해 신규 입사자의 적응 기간을 크게 단축하고, 팀 만족도 조사에서 멘토링 프로그램이 가장 높은 평가를 받았습니다.",
-        textEn:
-          "Significantly shortened new hire adaptation period through the onboarding program, with the mentoring program receiving the highest ratings in team satisfaction surveys.",
+        text: "Whitelist + MD5 검증 프로세스 수립 후 오탐 건수가 크게 감소하여 개발팀 업무가 중단 없이 안정화되었습니다.",
+        textEn: "After establishing the Whitelist + MD5 verification process, false positive counts dropped significantly, enabling uninterrupted dev team operations.",
       },
     ],
     lessons: [
       {
-        text: "개발 문화는 규칙이 아닌 공감을 통해 정착된다는 것을 배웠습니다. 코드 리뷰를 '검사'가 아닌 '학습의 기회'로 프레이밍하자 팀원들이 자발적으로 참여하기 시작했고, 이것이 지속 가능한 문화의 핵심이라는 것을 깨달았습니다.",
-        textEn:
-          "Learned that engineering culture is established through empathy, not rules. When code review was framed as a 'learning opportunity' rather than an 'inspection', team members began participating voluntarily — and I realized this is the key to sustainable culture.",
-      },
-      {
-        text: "리더십은 기술적 역량만으로는 충분하지 않으며, 팀원 개개인의 성장에 대한 진정한 관심과 지원이 팀 전체의 성과를 이끄는 가장 강력한 동력이라는 것을 경험했습니다.",
-        textEn:
-          "Experienced that leadership is not sufficient with technical skills alone — genuine interest in and support for each team member's growth is the most powerful driver of overall team performance.",
+        text: "보안 솔루션 도입 시 운영 효율과 비즈니스 영향을 함께 고려해야 함을 배웠습니다. MD5 기반 오탐 절차 수립은 보안 정책이 운영 현실과 긴밀히 통합되어야 함을 실무로 익힌 경험이었습니다.",
+        textEn: "Learned the importance of balancing operational efficiency and business impact when deploying security solutions. Building the MD5-based false positive process was a firsthand lesson that security policies must be tightly integrated with operational realities.",
       },
     ],
   },

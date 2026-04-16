@@ -4,6 +4,7 @@ import { useTranslations, useLocale } from "next-intl";
 import { m } from "framer-motion";
 import { Shield, Server, Award } from "lucide-react";
 import { certifications, awards } from "@/data/credentials";
+import { communities } from "@/data/speaking";
 import { SectionHeading } from "@/components/ui/section-heading";
 import { cn } from "@/lib/utils";
 import { parseDate } from "@/lib/date-utils";
@@ -158,6 +159,43 @@ export function Credentials() {
                 </div>
                 <span className="shrink-0 text-xs text-muted-foreground">
                   {award.date}
+                </span>
+              </div>
+            </m.div>
+          ))}
+        </div>
+
+        {/* Community */}
+        <m.h3
+          initial={{ opacity: 0 }}
+          whileInView={{ opacity: 1 }}
+          viewport={{ once: true }}
+          className="mb-6 mt-16 text-lg font-semibold text-foreground"
+        >
+          {t("community")}
+        </m.h3>
+
+        <div className="grid gap-3 sm:grid-cols-2">
+          {communities.map((community, i) => (
+            <m.div
+              key={`${community.organization}-${community.period}`}
+              initial={{ opacity: 0, y: 30 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true, margin: "-80px" }}
+              transition={{ duration: 0.45, delay: i * 0.08 }}
+              className="rounded-xl border border-border bg-card p-4 transition-colors hover:border-accent/20"
+            >
+              <div className="flex items-start justify-between gap-2">
+                <div className="min-w-0">
+                  <h4 className="text-sm font-semibold text-foreground">
+                    {isKo ? community.organization : community.organizationEn}
+                  </h4>
+                  <p className="mt-1 text-xs text-muted-foreground">
+                    {isKo ? community.role : community.roleEn}
+                  </p>
+                </div>
+                <span className="shrink-0 text-xs text-muted-foreground">
+                  {isKo ? community.period : community.periodEn}
                 </span>
               </div>
             </m.div>

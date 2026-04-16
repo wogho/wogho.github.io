@@ -6,108 +6,78 @@ export interface CareerHighlight {
 }
 
 export const careerOverview = {
-  ko: "8년간의 소프트웨어 엔지니어링 경력을 통해 대규모 서비스의 아키텍처 설계부터 성능 최적화, 팀 리딩까지 폭넓은 경험을 쌓아왔습니다. 사용자 중심의 문제 해결과 데이터 기반 의사결정을 통해 기술이 비즈니스 성장의 핵심 동력이 되도록 설계하는 것을 지향합니다.",
-  en: "Over 8 years of software engineering experience spanning architecture design for large-scale services, performance optimization, and team leadership. I focus on user-centric problem solving and data-driven decisions to ensure technology serves as a core driver of business growth.",
+  ko: "게임사 인프라팀에서 2년간 On-Prem 서버 구축부터 멀티 클라우드 운영, 네트워크 보안까지 폭넓은 실무를 경험했습니다.\n보안과 인프라를 연결하는 엔지니어로서 안정적인 환경 구축을 목표로 성장하고 있습니다.",
+  en: "Gained broad hands-on experience over 2 years at a gaming company's infrastructure team — from On-Prem server builds to multi-cloud operations and network security.\nGrowing as an engineer who bridges security and infrastructure.",
 };
 
 export const careerHighlights: CareerHighlight[] = [
   {
-    title: "마이크로서비스 아키텍처 전환",
-    titleEn: "Microservices Architecture Migration",
+    title: "본사/지사 간 NAS 동기화 통합",
+    titleEn: "HQ–Branch NAS Synchronization Integration",
     items: [
-      "모놀리식 시스템을 12개 마이크로서비스로 성공적으로 분리",
-      "서비스 간 통신을 위한 이벤트 드리븐 아키텍처 설계",
-      "무중단 마이그레이션 전략 수립 및 실행",
+      "중국 폐쇄망 환경에서의 대용량 파일 전송 실패 문제 해결",
+      "전용선(QoS 5Mbps) + 퍼블릭 회선(30Mbps) 이원화 구성으로 비용 절감",
+      "1.5GB 파일 전송 시간 200분 → 40분 이내 단축 (500% 이상 향상)",
+      "Synology ShareSync 부서별 접근 권한 분리 및 단방향 동기화 구성",
     ],
     itemsEn: [
-      "Successfully decomposed monolithic system into 12 microservices",
-      "Designed event-driven architecture for inter-service communication",
-      "Planned and executed zero-downtime migration strategy",
+      "Resolved large-file transfer failures in China's GFW-restricted network environment",
+      "Reduced costs with dual-path design: dedicated line (QoS 5Mbps) + public line (30Mbps)",
+      "Cut 1.5GB file transfer time from 200min to within 40min (500%+ improvement)",
+      "Configured Synology ShareSync with per-department access control and one-way sync",
     ],
   },
   {
-    title: "대규모 트래픽 성능 최적화",
-    titleEn: "Large-Scale Traffic Performance Optimization",
+    title: "시스템 접근 VPN 정책 개편 및 통합",
+    titleEn: "VPN Policy Overhaul & Integrated Access Management",
     items: [
-      "초당 10,000 요청 처리를 위한 캐싱 전략 및 데이터베이스 최적화",
-      "CDN 구성 및 정적 자산 최적화로 응답 시간 60% 단축",
-      "APM 도입 및 성능 모니터링 체계 구축",
+      "클라우드(FortiGate 80E)와 IDC(FortiGate 1000D) 접속 경로 단일화",
+      "FortiGate Site-to-Site 터널링 및 그룹 기반 IP 대역 할당으로 정책 체계화",
+      "외부 접속자용 OpenVPN + EasyRSA 인증서 + Google OTP 2FA 구축",
+      "입·퇴사자 권한 처리 시간 기존 대비 약 70% 단축",
     ],
     itemsEn: [
-      "Caching strategy and database optimization for 10,000 requests per second",
-      "Reduced response time by 60% through CDN configuration and static asset optimization",
-      "Introduced APM and established performance monitoring framework",
+      "Unified access paths for Cloud (FortiGate 80E) and IDC (FortiGate 1000D)",
+      "Systematized policies via FortiGate Site-to-Site tunneling and group-based IP allocation",
+      "Built dedicated OpenVPN for external users with EasyRSA certificates and Google OTP 2FA",
+      "Reduced onboarding/offboarding access management time by approximately 70%",
     ],
   },
   {
-    title: "개발 문화 및 팀 리더십",
-    titleEn: "Engineering Culture & Team Leadership",
+    title: "EDR/NGAV 도입 및 안정화 운영",
+    titleEn: "EDR/NGAV Deployment & Operational Stabilization",
     items: [
-      "코드 리뷰 문화 정착 및 팀 내 기술 공유 세미나 운영",
-      "주니어 개발자 온보딩 프로그램 설계 및 멘토링",
-      "애자일 프로세스 도입으로 스프린트 완료율 30% 향상",
+      "KISA CERT 가이드 기반 보안 체크리스트·솔루션 비교표 작성 참여",
+      "개발 소스코드 오탐 문제를 MD5 해시값 대조로 판별하는 실무 절차 구축",
+      "Whitelist 등록 후 Prevent 모드 전환 검증, 개발팀 업무 영향 없이 안정화",
+      "Fileless·랜섬웨어 변종 등 기존 백신이 탐지 못한 위협 차단 및 보안 사고 0건 유지",
     ],
     itemsEn: [
-      "Established code review culture and ran internal tech sharing seminars",
-      "Designed junior developer onboarding program and mentoring",
-      "Improved sprint completion rate by 30% through agile process adoption",
+      "Participated in KISA CERT-based security checklist and solution comparison",
+      "Built MD5 hash verification procedure to identify false positives on dev source files",
+      "Validated Prevent mode transition after whitelist registration with zero dev team disruption",
+      "Blocked threats (Fileless, ransomware variants) undetectable by legacy AV; zero security incidents",
     ],
-  },
-  {
-    title: "CI/CD 및 인프라 자동화",
-    titleEn: "CI/CD & Infrastructure Automation",
-    items: [
-      "GitHub Actions 기반 CI/CD 파이프라인 구축 및 운영",
-      "Infrastructure as Code를 활용한 클라우드 인프라 관리",
-      "컨테이너 오케스트레이션 환경 구축 및 자동 스케일링 구현",
-    ],
-    itemsEn: [
-      "Built and operated CI/CD pipelines using GitHub Actions",
-      "Managed cloud infrastructure with Infrastructure as Code",
-      "Set up container orchestration with auto-scaling capabilities",
-    ],
-  },
-  {
-    title: "오픈소스 기여 및 커뮤니티 활동",
-    titleEn: "Open Source Contributions & Community",
-    items: [
-      "CLI 스캐폴딩 도구 오픈소스 프로젝트 주도 개발",
-      "기술 블로그 및 컨퍼런스 발표를 통한 지식 공유",
-      "AI를 활용한 개발 생산성 도구 자체 개발 및 배포",
-    ],
-    itemsEn: [
-      "Led development of open-source CLI scaffolding tool",
-      "Shared knowledge through tech blog and conference talks",
-      "Self-developed and deployed developer productivity tools leveraging AI",
-    ],
-    // Sub-tools list for display
   },
 ];
 
-export const selfDevelopedTools = [
-  { ko: "프로젝트 스캐폴딩 CLI 도구", en: "Project Scaffolding CLI Tool" },
-  { ko: "API 문서 자동 생성기", en: "API Documentation Auto-Generator" },
-  {
-    ko: "데이터베이스 마이그레이션 검증 도구",
-    en: "Database Migration Validation Tool",
-  },
-];
+export const selfDevelopedTools: { ko: string; en: string }[] = [];
 
 export const coreCompetencies = [
   {
-    ko: "대규모 시스템 아키텍처 설계 및 마이크로서비스 전환",
-    en: "Large-scale system architecture design and microservices migration",
+    ko: "IDC 서버 구축·운영 및 가상화 환경 관리",
+    en: "IDC server deployment, operations, and virtualization management",
   },
   {
-    ko: "성능 최적화 및 데이터 기반 의사결정",
-    en: "Performance optimization and data-driven decision making",
+    ko: "네트워크 보안 설계 — VPN, 방화벽 정책, 접근 통제",
+    en: "Network security design — VPN, firewall policy, and access control",
   },
   {
-    ko: "CI/CD 파이프라인 구축 및 인프라 자동화",
-    en: "CI/CD pipeline construction and infrastructure automation",
+    ko: "EDR/NGAV 도입 및 보안 관제 운영",
+    en: "EDR/NGAV deployment and security monitoring operations",
   },
   {
-    ko: "팀 리더십 및 개발 문화 조성",
-    en: "Team leadership and engineering culture cultivation",
+    ko: "멀티 클라우드(AWS, NCP, GCP) 인프라 운영",
+    en: "Multi-cloud (AWS, NCP, GCP) infrastructure operations",
   },
 ];
