@@ -22,6 +22,10 @@ const jetbrainsMono = JetBrains_Mono({
 import { Analytics } from "@vercel/analytics/next";
 import { SpeedInsights } from "@vercel/speed-insights/next";
 
+export function generateStaticParams() {
+  return [{ locale: "ko" }, { locale: "en" }];
+}
+
 export default async function LocaleLayout({
   children,
   params,
