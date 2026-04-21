@@ -1,38 +1,39 @@
 "use client";
 
-import { useTranslations } from "next-intl";
+import { useTranslations, useLocale } from "next-intl";
 import { m } from "framer-motion";
-import { ChevronDown } from "lucide-react";
 
 export function Hero() {
   const t = useTranslations("hero");
+  const locale = useLocale();
+
+  const stats = [
+    { value: t("stat1_value"), label: t("stat1_label") },
+    { value: t("stat2_value"), label: t("stat2_label") },
+    { value: t("stat3_value"), label: t("stat3_label") },
+    { value: t("stat4_value"), label: t("stat4_label") },
+  ];
 
   return (
     <section
       id="hero"
-      className="relative flex min-h-screen flex-col items-center justify-center overflow-hidden px-4"
+      className="relative flex min-h-screen flex-col overflow-hidden px-6 pb-12 pt-24 sm:px-10 lg:px-20"
     >
       {/* Animated gradient orbs */}
-      <div className="hero-orbs pointer-events-none absolute inset-0">
-        {/* Floating orb 1 — accent blue */}
-      <div
+      <div className="pointer-events-none absolute inset-0">
+        <div
           className="absolute left-1/4 top-1/4 h-[500px] w-[500px] rounded-full bg-accent/10 blur-[120px] will-change-transform"
-          style={{ animation: 'float-orb-1 20s ease-in-out infinite' }}
+          style={{ animation: "float-orb-1 20s ease-in-out infinite" }}
         />
-        {/* Floating orb 2 — accent-secondary green */}
-      <div
-          className="absolute right-1/4 bottom-1/3 h-[400px] w-[400px] rounded-full bg-accent-secondary/8 blur-[100px] will-change-transform"
-          style={{ animation: 'float-orb-2 25s ease-in-out infinite' }}
+        <div
+          className="absolute bottom-1/3 right-1/4 h-[400px] w-[400px] rounded-full bg-accent-secondary/8 blur-[100px] will-change-transform"
+          style={{ animation: "float-orb-2 25s ease-in-out infinite" }}
         />
-        {/* Floating orb 3 — subtle accent top-right */}
-      <div
+        <div
           className="absolute right-1/3 top-1/5 h-[300px] w-[300px] rounded-full bg-accent/6 blur-[80px] will-change-transform"
-          style={{ animation: 'float-orb-3 18s ease-in-out infinite' }}
+          style={{ animation: "float-orb-3 18s ease-in-out infinite" }}
         />
-        {/* Gradient mesh base */}
         <div className="absolute inset-0 bg-[radial-gradient(ellipse_80%_50%_at_50%_-20%,rgba(14,165,233,0.12),transparent)]" />
-        <div className="absolute inset-0 bg-[radial-gradient(ellipse_50%_80%_at_80%_50%,rgba(16,185,129,0.06),transparent)]" />
-        {/* Grid dots */}
         <div
           className="absolute inset-0 opacity-[0.03]"
           style={{
@@ -43,82 +44,82 @@ export function Hero() {
         />
       </div>
 
-      <div className="relative z-10 mx-auto max-w-3xl text-center">
-        {/* Name */}
+      {/* Main content */}
+      <div className="relative z-10 flex flex-1 flex-col justify-center">
+
+        {/* ── Name ── */}
         <m.h1
-          initial={{ opacity: 0, y: 20 }}
+          initial={{ opacity: 0, y: 16 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.5, delay: 0.2 }}
-          className="mb-4 text-5xl font-bold tracking-tight sm:text-6xl md:text-7xl"
+          className="mb-6 text-6xl font-bold leading-none tracking-tight md:text-8xl"
         >
-          <span className="bg-gradient-to-r from-foreground to-accent bg-clip-text text-transparent">
-            {t("name")}
-          </span>
+          {t("name")}
         </m.h1>
 
-        {/* Title */}
-        <m.div
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.5, delay: 0.35 }}
-          className="mb-6"
-        >
-          <span className="font-mono text-lg text-accent sm:text-xl md:text-2xl">
-            {t("title")}
-          </span>
-        </m.div>
-
-        {/* Subtitle */}
+        {/* ── Title ── */}
         <m.p
-          initial={{ opacity: 0, y: 20 }}
+          initial={{ opacity: 0, y: 12 }}
           animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.5, delay: 0.5 }}
-          className="mx-auto mb-10 max-w-xl text-lg leading-relaxed text-muted-foreground sm:text-xl"
+          transition={{ duration: 0.4, delay: 0.4 }}
+          className="mb-6 font-mono text-base text-accent sm:text-lg"
+        >
+          Security Infrastructure Engineer
+        </m.p>
+
+        {/* ── Subtitle ── */}
+        <m.p
+          initial={{ opacity: 0, y: 12 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.4, delay: 0.6 }}
+          className="max-w-2xl whitespace-pre-line text-xl leading-relaxed text-muted-foreground"
         >
           {t("subtitle")}
         </m.p>
 
-        {/* CTA Buttons */}
+        {/* ── CTA Buttons ── */}
         <m.div
-          initial={{ opacity: 0, y: 20 }}
+          initial={{ opacity: 0, y: 12 }}
           animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.5, delay: 0.65 }}
-          className="hero-cta inline-grid grid-cols-2 gap-4"
+          transition={{ duration: 0.4, delay: 0.8 }}
+          className="mt-8 flex flex-wrap gap-4"
         >
           <a
-            href="#career-highlights"
-            className="rounded-lg border border-border bg-card px-8 py-3 text-center text-base font-medium text-foreground transition-all hover:scale-[1.02] hover:border-accent/40 hover:bg-accent/5"
+            href={`/${locale}/career/`}
+            className="w-36 rounded-lg border border-border bg-card px-8 py-3 text-center text-base font-medium text-foreground transition-all hover:scale-[1.02] hover:border-accent/40 hover:bg-accent/5"
           >
             {t("cta_resume")}
           </a>
           <a
             href="#contact"
-            className="rounded-lg bg-accent px-8 py-3 text-center text-base font-medium text-accent-foreground shadow-lg shadow-accent/20 transition-all hover:scale-[1.02] hover:bg-accent/90"
+            className="w-36 rounded-lg bg-accent px-8 py-3 text-center text-base font-medium text-accent-foreground shadow-lg shadow-accent/20 transition-all hover:scale-[1.02] hover:bg-accent/90"
           >
             {t("cta_contact")}
           </a>
         </m.div>
       </div>
 
-      {/* Scroll indicator */}
-      <a
-        href="#about"
-        className="absolute bottom-8 left-1/2 -translate-x-1/2"
-        aria-label="Scroll down"
+      {/* Stats grid */}
+      <m.div
+        initial={{ opacity: 0, y: 16 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ duration: 0.45, delay: 0.8 }}
+        className="relative z-10 mt-10 grid grid-cols-2 gap-4 sm:grid-cols-4"
       >
-        <m.div
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
-          transition={{ delay: 1.2 }}
-        >
-          <m.div
-            animate={{ y: [0, 8, 0] }}
-            transition={{ repeat: Infinity, duration: 2, ease: "easeInOut" }}
+        {stats.map((stat) => (
+          <div
+            key={stat.label}
+            className="rounded-xl border border-border bg-muted/30 p-6 transition-colors hover:border-accent"
           >
-            <ChevronDown className="h-5 w-5 text-muted-foreground" />
-          </m.div>
-        </m.div>
-      </a>
+            <div className="mb-2 text-3xl font-bold text-accent">
+              {stat.value}
+            </div>
+            <div className="font-mono text-sm text-muted-foreground">
+              {stat.label}
+            </div>
+          </div>
+        ))}
+      </m.div>
     </section>
   );
 }

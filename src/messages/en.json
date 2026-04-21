@@ -10,11 +10,19 @@
   },
   "hero": {
     "greeting": "Hello",
-    "name": "Jaeho Kim",
+    "name": "Jaeho",
     "title": "Security Infrastructure Engineer",
-    "subtitle": "An engineer growing toward building stable and secure infrastructure environments.",
+    "subtitle": "With broad hands-on experience from infrastructure setup to multi-cloud operations,\ncurrently growing toward building stable and secure infrastructure environments.",
     "cta_resume": "View Portfolio",
-    "cta_contact": "Get in Touch"
+    "cta_contact": "Get in Touch",
+    "stat1_value": "07+",
+    "stat1_label": "Certifications",
+    "stat2_value": "02+",
+    "stat2_label": "Awards",
+    "stat3_value": "2019",
+    "stat3_label": "Year Started",
+    "stat4_value": "Enrolled",
+    "stat4_label": "Status"
   },
   "about": {
     "heading": "About",

@@ -10,11 +10,19 @@
   },
   "hero": {
     "greeting": "안녕하세요",
-    "name": "김재호",
+    "name": "재호",
     "title": "Security Infrastructure Engineer",
-    "subtitle": "안정적인 보안 인프라 환경 구축을 목표로 성장하는 엔지니어입니다.",
+    "subtitle": "인프라 구축부터 멀티 클라우드 운영까지 폭넓은 실무 경험으로,\n현재 안정적인 보안 인프라 환경 구축을 목표로 성장하고 있습니다.",
     "cta_resume": "포트폴리오",
-    "cta_contact": "연락하기"
+    "cta_contact": "연락하기",
+    "stat1_value": "07+",
+    "stat1_label": "자격증",
+    "stat2_value": "02+",
+    "stat2_label": "수상",
+    "stat3_value": "2019",
+    "stat3_label": "시작 연도",
+    "stat4_value": "재학중",
+    "stat4_label": "현재 상태"
   },
   "about": {
     "heading": "About",

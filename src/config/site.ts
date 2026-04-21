@@ -12,7 +12,6 @@ export const siteConfig = {
   },
   nav: [
     "about",
-    "education",
     "experience",
     "career-highlights",
     "certified",

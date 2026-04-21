@@ -3,7 +3,7 @@
 import { useState, useEffect } from "react";
 import { useTranslations, useLocale } from "next-intl";
 import { useTheme } from "next-themes";
-import { usePathname, useRouter } from "next/navigation";
+import { usePathname, useRouter } from "@/i18n/routing";
 import { m, AnimatePresence } from "framer-motion";
 import { Shield, Sun, Moon, Menu, X, Globe } from "lucide-react";
 import { cn } from "@/lib/utils";
@@ -48,15 +48,21 @@ export function Header() {
 
   const switchLocale = () => {
     const next = locale === "ko" ? "en" : "ko";
-    const segments = pathname.split("/");
-    segments[1] = next;
-    router.push(segments.join("/"));
+    // 브라우저 원본 경로(/en/, /ko/career 등)를 직접 읽어서 처리
+    const rawPath = window.location.pathname;
+    const segments = rawPath.split("/").filter(Boolean);
+    if (segments[0] === "ko" || segments[0] === "en") {
+      segments[0] = next;
+    } else {
+      segments.unshift(next);
+    }
+    window.location.href = "/" + segments.join("/") + "/";
   };
 
   const scrollTo = (id: string) => {
     setMobileOpen(false);
     if (isSubPage) {
-      router.push(`/${locale}#${id}`);
+      window.location.href = `/${locale}#${id}`;
       return;
     }
     const el = document.getElementById(id);
@@ -65,7 +71,7 @@ export function Header() {
     }
   };
 
-  const targetLang = locale === "ko" ? "EN" : "KO";
+  const displayLang = locale === "ko" ? "KO" : "EN";
 
   return (
     <>
@@ -86,7 +92,7 @@ export function Header() {
             <button
               onClick={() => {
                 if (isSubPage) {
-                  router.push(`/${locale}`);
+                  router.push(`/${locale}/`);
                 } else {
                   window.scrollTo({ top: 0, behavior: "smooth" });
                 }
@@ -121,8 +127,8 @@ export function Header() {
                 aria-label="Switch language"
               >
                 <Globe className="h-4 w-4" />
-                <span className="text-xs font-bold uppercase tracking-wide text-accent">
-                  {targetLang}
+                <span className="text-xs font-bold uppercase tracking-wide text-foreground">
+                  {displayLang}
                 </span>
               </button>
 

@@ -9,6 +9,9 @@ import { careerDetailSections } from "@/data/career-detail";
 import { cn } from "@/lib/utils";
 import { DetailItem } from "@/components/sections/career-story/detail-item";
 import { RoleAccordion } from "@/components/sections/career-story/role-accordion";
+import { NasTopologyDiagram } from "@/components/sections/career-story/nas-topology";
+import { VpnTopologyDiagram } from "@/components/sections/career-story/vpn-topology";
+import { EdrProcessDiagram } from "@/components/sections/career-story/edr-process";
 
 export function CareerStoryContent() {
   const t = useTranslations("career_story");
@@ -143,6 +146,21 @@ export function CareerStoryContent() {
                   </h2>
                   <div aria-hidden="true" className="mt-3 h-1 w-16 rounded-full bg-accent" />
                 </div>
+
+                {/* NAS Topology Diagram */}
+                {section.id === "nas-sync" && (
+                  <NasTopologyDiagram isKo={isKo} />
+                )}
+
+                {/* VPN Topology Diagram */}
+                {section.id === "vpn-policy" && (
+                  <VpnTopologyDiagram isKo={isKo} />
+                )}
+
+                {/* EDR Process Diagram */}
+                {section.id === "edr-ngav" && (
+                  <EdrProcessDiagram isKo={isKo} />
+                )}
 
                 {/* Background */}
                 <div className="mb-10">

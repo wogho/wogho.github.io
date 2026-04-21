@@ -16,9 +16,9 @@ export const careerHighlights: CareerHighlight[] = [
     titleEn: "HQ–Branch NAS Synchronization Integration",
     items: [
       "중국 폐쇄망 환경에서의 대용량 파일 전송 실패 문제 해결",
-      "전용선(QoS 5Mbps) + 퍼블릭 회선(30Mbps) 이원화 구성으로 비용 절감",
-      "1.5GB 파일 전송 시간 200분 → 40분 이내 단축 (500% 이상 향상)",
-      "Synology ShareSync 부서별 접근 권한 분리 및 단방향 동기화 구성",
+      "전용선 구간 NAT 1:1 매핑 설정 및 QoS 비용 절감",
+      "파일 전송 시간 200분 → 40분 이내 단축 (500% 이상 향상)",
+      "부서별 접근 권한 분리 및 단방향 동기화 구성",
     ],
     itemsEn: [
       "Resolved large-file transfer failures in China's GFW-restricted network environment",
@@ -31,9 +31,9 @@ export const careerHighlights: CareerHighlight[] = [
     title: "시스템 접근 VPN 정책 개편 및 통합",
     titleEn: "VPN Policy Overhaul & Integrated Access Management",
     items: [
-      "클라우드(FortiGate 80E)와 IDC(FortiGate 1000D) 접속 경로 단일화",
-      "FortiGate Site-to-Site 터널링 및 그룹 기반 IP 대역 할당으로 정책 체계화",
-      "외부 접속자용 OpenVPN + EasyRSA 인증서 + Google OTP 2FA 구축",
+      "클라우드 및 IDC 접속 경로 단일화",
+      "FortiGate Site-to-Site 터널링 및 그룹 기반 IP 대역 정책 할당",
+      "내부 SSL-VPN 공유 방지를 위한 OpenVPN 구축",
       "입·퇴사자 권한 처리 시간 기존 대비 약 70% 단축",
     ],
     itemsEn: [
